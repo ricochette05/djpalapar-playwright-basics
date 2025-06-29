@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Code Blossom: Test Automation activity",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ricochette05/djpalapar-playwright-basics.git"
@@ -17,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ricochette05/djpalapar-playwright-basics/issues"
   },
-  "homepage": "https://github.com/ricochette05/djpalapar-playwright-basics#readme"
+  "homepage": "https://github.com/ricochette05/djpalapar-playwright-basics#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^24.0.7"
+  }
 }
