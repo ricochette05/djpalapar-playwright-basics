@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Code Blossom: Test Automation activity",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "login-test": "npx playwright test tests/features/login.spec.js --project chromium",
+    "register-test": "npx playwright test tests/features/registration.spec.js --project chromium",
+    "test-report": "npx playwright show-report"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ricochette05/djpalapar-playwright-basics.git"
