@@ -1,17 +1,29 @@
 import { test, expect } from '@playwright/test';
 
-// test.beforeEach('test', async ({ page }) => {
-//   await page.goto('https://parabank.parasoft.com/parabank/index.htm');
-//   await page.getByRole('link', { name: 'Admin Page' }).click();
-//   await page.getByRole('button', { name: 'Clean' }).click();
-// });
+test('Verify the following error message when clicking Register button with empty fields', async ({ page }) => {
 
-test('Verify user able to register new account', async ({ page }) => {
-  await page.goto('https://parabank.parasoft.com/parabank/index.htm');
-  await page.getByRole('link', { name: 'Register' }).click();
-  
-  //Define unique username
-  const uniqueUsername = `joy${Date.now()}`;
+    //Navigate to system
+    await page.goto('https://parabank.parasoft.com/parabank/register.htm')
+
+    //Click Register button
+    await page.getByRole('link', { name: 'Register'}).click()
+
+    //Click Register CTA
+    await page.getByRole('button', { name: 'Register'}).click() 
+
+    //Verify error message
+    await expect(page.locator(('[id="customer.firstName.errors"]'))).toBeVisible()
+    
+    //id="customer.ssn.errors"
+    await expect(page.locator('[id="customer.ssn.errors"]')).toContainText('Social Security Number is required.');
+
+});
+
+test('Verify that the user can register with valid data', async ({ page }) => {
+    //Navigate to system
+    await page.goto('https://parabank.parasoft.com/parabank/register.htm')
+
+    const uniqueUsername = `joy${Date.now()}`;
 
     //Fill in the registration form with valid data
     await page.locator('[id="customer.firstName"]').fill('Joy')
@@ -31,4 +43,5 @@ test('Verify user able to register new account', async ({ page }) => {
 
     //Verify successful registration message
     await expect(page.locator('.title')).toHaveText(/Welcome/)
+
 });

@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "login-test": "npx playwright test tests/features/login.spec.js --project chromium",
+    "login-test-trace": "npx playwright test tests/features/login.spec.js --project chromium --trace on",
     "register-test": "npx playwright test tests/features/registration.spec.js --project chromium",
-    "test-report": "npx playwright show-report"
+    "register-test-ui": "npx playwright test tests/features/registration.spec.js --project chromium --ui",
+    "test-report": "npx playwright show-report",
+    "parabank-example": "npx playwright test tests/features/parabank-example.spec.js --project chromium --ui",
+    "auth-setup": "npx playwright test auth.setup.js --project setup",
+    "e2e-test": "npx playwright test --project e2e"
   },
   "repository": {
     "type": "git",
@@ -21,7 +26,10 @@
   },
   "homepage": "https://github.com/ricochette05/djpalapar-playwright-basics#readme",
   "devDependencies": {
-    "@playwright/test": "^1.53.1",
+    "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.7"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0"
   }
 }
