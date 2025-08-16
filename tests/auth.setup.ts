@@ -5,6 +5,9 @@ setup('Do login', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
 
     // Fill in the login form with environment variables
+    if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_PASSWORD) {
+      throw new Error('SAUCE_USERNAME or SAUCE_PASSWORD environment variable is not set.');
+    }
     await page.locator('[data-test="username"]').fill(process.env.SAUCE_USERNAME);
     await page.locator('[data-test="password"]').fill(process.env.SAUCE_PASSWORD);
     // Click the login button
