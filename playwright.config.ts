@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import { GitHubActionOptions } from "@estruyf/github-actions-reporter";
 import dotenv from "dotenv";
 import path from "path";
 
@@ -30,7 +31,18 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter:[
+     ["html"],
+     ["list"],
+     [
+      "@estruyf/github-actions-reporter",
+       <GitHubActionOptions>{
+         title: "DJPALAPAR Playwright Basics - Test Report",
+        useDetails: true,
+        showError: true,
+       }
+     ]
+   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     bypassCSP: true,
@@ -60,10 +72,10 @@ export default defineConfig({
     },
       },
     },
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
 
     // {
     //   name: 'firefox',
